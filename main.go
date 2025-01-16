@@ -23,6 +23,10 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "parse(), err %v", err)
 		return
 	}
+	if r.Method != "POST" {
+		http.Error(w, "Method Not Found", http.StatusMethodNotAllowed)
+		return
+	}
 	fmt.Fprintf(w, "Post Reqest Successfull")
 	name := r.FormValue("name")
 	addess := r.FormValue("address")
